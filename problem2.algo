@@ -1,0 +1,51 @@
+ALGORITHM Procedure dot_product
+VAR 
+  ps : REAL, v1 : ARRAY OF REAL, v2 : ARRAY OF REAL, n : INTEGER
+    ps := 0
+    FOR i FROM 0 TO n-1 DO
+        ps := ps + v1[i] * v2[i]
+    END_FOR
+END_PROCEDURE
+
+
+ALGORITHM CheckOrthogonalVectors(vectors1, vectors2, n, size)
+    Input: 
+        vectors1: 2D array of REAL (n vectors, each of length size)
+        vectors2: 2D array of REAL (n vectors, each of length size)
+        n: number of vector pairs
+        size: length of each vector
+    Output: 
+        Prints if each pair is orthogonal or not
+
+    DECLARE ps: REAL
+
+    FOR i FROM 0 TO n-1 DO
+        CALL dot_product(ps, vectors1[i], vectors2[i], size)
+        IF ps = 0 THEN
+            Write("Vectors ", i, " are orthogonal.")
+        ELSE
+            Write("Vectors ", i, " are NOT orthogonal.")
+        END_IF
+    END_FOR
+END
+
+
+Function dot_product(v1 : ARRAY OF REAL, v2 : ARRAY OF REAL, n : INTEGER) : REAL
+    sum := 0
+    FOR i FROM 0 TO n-1 DO
+        sum := sum + v1[i] * v2[i]
+    END_FOR
+    RETURN sum
+END_FUNCTION
+
+ALGORITHM CheckOrthogonalVectors_Function(vectors1, vectors2, n, size)
+    FOR i FROM 0 TO n-1 DO
+        ps := dot_product(vectors1[i], vectors2[i], size)
+        IF ps = 0 THEN
+            Write("Vectors ", i, " are orthogonal.")
+        ELSE
+            Write("Vectors ", i, " are NOT orthogonal.")
+        END_IF
+    END_FOR
+END
+

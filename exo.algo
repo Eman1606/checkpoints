@@ -1,0 +1,39 @@
+ALGORITHM SumDistinctElements(set1, set2)
+    Input: set1[ ] and set2[ ] (arrays of integers)
+    Output: sum (integer)
+
+    sum := 0
+
+    // Add elements in set1 that are NOT in set2
+    FOR i FROM 0 TO length(set1) - 1 DO
+        found := FALSE
+        FOR j FROM 0 TO length(set2) - 1 DO
+            IF set1[i] = set2[j] THEN
+                found := TRUE
+                BREAK
+            END_IF
+        END_FOR
+        IF NOT found THEN
+            sum := sum + set1[i]
+        END_IF
+    END_FOR
+
+    // Add elements in set2 that are NOT in set1
+    FOR i FROM 0 TO length(set2) - 1 DO
+        found := FALSE
+        FOR j FROM 0 TO length(set1) - 1 DO
+            IF set2[i] = set1[j] THEN
+                found := TRUE
+                BREAK
+            END_IF
+        END_FOR
+        IF NOT found THEN
+            sum := sum + set2[i]
+        END_IF
+    END_FOR
+
+    RETURN sum
+END
+
+
+
